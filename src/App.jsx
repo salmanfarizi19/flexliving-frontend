@@ -25,6 +25,7 @@ function App() {
   const [tenantGrouping, setTenantGrouping] = useState("monthly");
 const [tenantTimeRange, setTenantTimeRange] = useState("all");
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   const safeAvg = (arr) => {
     if (!Array.isArray(arr) || arr.length === 0) return 0;
@@ -51,7 +52,7 @@ const [tenantTimeRange, setTenantTimeRange] = useState("all");
   };
 
   useEffect(() => {
-    axios.get("http://localhost:3001/api/reviews/hostaway")
+    axios.get(`${BACKEND_URL}/api/reviews/hostaway`)
       .then((res) => {
         const data = Array.isArray(res.data) ? res.data : (res.data.result || res.data);
         const normalized = (data || []).map((r) => ({
@@ -86,7 +87,7 @@ const [tenantTimeRange, setTenantTimeRange] = useState("all");
     setReviews((prev) => prev.map((r) => (r.id === review.id ? { ...r, status: newStatus } : r)));
 
     try {
-      await axios.patch(`http://localhost:3001/api/reviews/hostaway/${review.id}`, { status: newStatus });
+      await axios.patch(`${BACKEND_URL}/api/reviews/hostaway/${review.id}`, { status: newStatus });
     } catch (err) {
       console.error("Failed to toggle status:", err);
       setApproved((prev) => ({ ...prev, [review.id]: currentlyPublished }));
