@@ -1,0 +1,201 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  --bg: #FFFDF6;        /* soft off-white / cream */
+  --text: #333333;     /* primary text */
+  --muted: #666666;    /* secondary text */
+  --card-bg: #FFFFFF;  /* card background */
+  --shadow-1: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-2: 0 4px 12px rgba(0,0,0,0.06);
+  --accent-green: #25D366;
+}
+
+/* === Global Styles === */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+   padding-top: 130px;
+}
+
+/* make sure root container is centered like before */
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.app-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* === Sticky Full-Width Header === */
+.sticky-header {
+  position: fixed;
+  top: 0;
+    left: 0;
+  background-color: #2F4F4F;
+  padding: 25px 32px;
+  z-index: 1000;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+
+  /* This forces it to ignore #root's centering */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+.app-content {
+  padding-top: 130px; /* make space for header height */
+}
+/* Align text like the example */
+.header-content {
+  display: flex;
+  align-items: baseline; /* aligns smaller subtitle with baseline of title */
+  gap: 8px;
+}
+
+/* Big bold title */
+.brand-title {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Smaller, lighter subtitle */
+.brand-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* === Card / Chart container === */
+.card {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-1);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+/* === Review Card Styling === */
+.review-card {
+  background: var(--card-bg);
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-1);
+  transition: box-shadow .18s ease, transform .12s ease;
+  border-left: none; /* keep your original intention */
+}
+
+.review-card:hover {
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
+}
+
+/* tiny spacing tweaks for internal elements (keeps your inline styles intact) */
+.review-card p {
+  margin: 8px 0 0 0;
+  color: #333;
+}
+
+/* Insights box used when "Show Insights" is toggled */
+.insights-box {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fafafa;
+  border: 1px solid rgba(0,0,0,0.03);
+  color: var(--text);
+}
+
+/* === Category Pill Styling === */
+.category-pill, .review-card .category-pill {
+  background: #f6f6f6;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  display: inline-block;
+}
+
+/* Keep color coding based on rating (you already use JS color logic too) */
+.category-pill.red { color: red; }
+.category-pill.orange { color: orange; }
+.category-pill.green { color: green; }
+.category-pill.darkblue { color: darkblue; }
+
+/* === Form element improvements (rounded beige inputs like theflex search bar) === */
+select, input[type="text"], input[type="search"], button {
+  font-family: inherit;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: #fff;
+  padding: 8px 10px;
+  outline: none;
+}
+
+select:focus, input[type="text"]:focus, input[type="search"]:focus {
+  box-shadow: 0 0 0 4px rgba(47,79,79,0.04);
+}
+
+/* Simple rounded primary button */
+button {
+  cursor: pointer;
+  background: #2F4F4F; /* subtle dark accent for buttons - you can change to brand color */
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+
+button:hover { opacity: 0.96; transform: translateY(-1px); }
+
+
+
+/* small responsive fixes */
+@media (max-width: 800px) {
+  .header-content { padding: 0 16px; }
+  #root { padding: 1rem; }
+  .header-logo h1 { font-size: 1.25rem; }
+}
+html, body {
+  background-color: #f2eee2 !important;
+}
+
+#root {
+  background-color: #FFFDF6 !important;
+}
+/* Fade up animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 0.4s ease forwards;
+}
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2F4F4F;
+  margin-bottom: 4px;
+}
+
+.section-desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
