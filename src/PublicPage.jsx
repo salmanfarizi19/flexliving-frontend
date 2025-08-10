@@ -6,7 +6,7 @@ import axios from "axios";
 export default function PublicPage() {
   const [reviews, setReviews] = useState([]);
   const [filteredReviews, setFilteredReviews] = useState([]);
-
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
   // Filters state
   const [ratingThreshold, setRatingThreshold] = useState("All");
   const [sortBy, setSortBy] = useState("time_desc");
@@ -31,7 +31,7 @@ export default function PublicPage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/reviews/hostaway")
+      .get(`${BACKEND_URL}/api/reviews/hostaway`)
       .then((response) => {
         const data = Array.isArray(response.data)
           ? response.data
